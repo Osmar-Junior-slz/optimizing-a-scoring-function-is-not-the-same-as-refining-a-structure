@@ -1,0 +1,7 @@
+schema_version: dockingpp_archive_pin_v1
+engine_name: dockingpp_archive
+archive_filename: DockingReduce_V5.zip
+archive_sha256: 55cda28c370294b4019f74167f434f543273db0ba5a7961f24c54f9e57cfc576
+config_entry: dockingpp/configs/default.yaml
+config_sha256: 851cc2a9532dfa8ed581ca27c249f8bd081a1efd90171d1d5ff6b80937b2fc53
+

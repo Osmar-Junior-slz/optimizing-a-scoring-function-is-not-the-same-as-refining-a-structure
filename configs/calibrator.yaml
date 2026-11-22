@@ -1,0 +1,3 @@
+schema_version: docking_calibrator_binding_v1
+purpose: generalized_quality_prediction
+artifact_path: models/calibrador_gva_2025_hibrido_15_standard_20261119/artifact.json

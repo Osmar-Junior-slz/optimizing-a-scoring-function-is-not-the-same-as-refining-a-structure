@@ -1,0 +1,74 @@
+schema_version: "2.0"
+
+features:
+  schema_version: reduced_decision_features_v2
+  provenance: reduced_only
+  columns:
+    - scan_gap_norm
+    - viable_fraction_mean
+    - elite_dispersion
+    - uncertainty_count
+    - energy_q20_norm
+
+contact_graph:
+  enabled: false
+  schema_version: residue_interface_contact_graph_v2
+  parser_schema_version: pdb_fixed_columns_v2
+  altloc_policy: residue_highest_total_occupancy_v1
+  node_universe: all_selected_residues
+  model_id: 1
+  cutoff_angstrom: 4.5
+  clash_cutoff_angstrom: 2.0
+  include_hetero: false
+  heavy_atoms_only: true
+  exclude_waters: true
+  require_pose_provenance: false
+
+preservation:
+  minimum_reduced_dockq: 0.23
+  maximum_dockq_loss: 0.05
+
+validation:
+  split_folds: 5
+  random_seed: 20260831
+  assignment_commitment: predeclared_before_labels
+
+model:
+  C: 1.0
+  class_weight: balanced
+  max_iter: 5000
+
+calibration:
+  method: inductive_venn_abers
+  minimum_independent_complexes: 4
+  minimum_positive_class_complexes: 1
+  minimum_negative_class_complexes: 1
+
+applicability_domain:
+  lower_quantile: 0.01
+  upper_quantile: 0.99
+  block_feature_extrapolation: true
+
+policy:
+  method: learn_then_test_bonferroni_binomial_iid
+  risk_target: 0.50
+  familywise_confidence_level: 0.80
+  risk_error_budget_fraction: 0.80
+  threshold_min: 0.00
+  threshold_max: 0.80
+  threshold_step: 0.20
+  minimum_complex_coverage: 0.00
+  minimum_evaluated_complexes: 1
+  minimum_authorized_complexes: 1
+
+runtime_gate:
+  enabled: true
+  require_reduced_faster_than_full: true
+  minimum_speedup: 1.0
+
+authorization:
+  profile: demo_non_scientific
+  allow_automatic_decision: false
+  require_scientific_provenance: true
+  trusted_engine_allowlist: []
+  protocol_commitment_sha256: null

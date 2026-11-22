@@ -1,0 +1,20 @@
+schema_version: article_exact_selective_risk_v1
+method: learn_then_test_exact_binomial_bonferroni_envelope
+mode: risk_coverage_only
+# Reporting design, not a universal scientific constant or an approved risk budget.
+confidence_level: 0.95
+maximum_accepted_error_rate: null
+threshold_min: 0.0
+threshold_max: 0.99
+threshold_step: 0.01
+family_methods: [original, isotonic, venn_abers]
+family_stages: [risk_calibration, article_test]
+independent_unit: complex_fingerprint_sha256
+primary_outcome: reduced_acceptable_no_dockq_class_loss_v1
+quality_cutoffs: [0.23, 0.49, 0.80]
+missing_quality: adverse_for_upper_bound
+references:
+  threshold_method: https://arxiv.org/abs/2110.01052
+  threshold_sections: ["2.1", "2.3", "3.2"]
+  structural_measure: https://doi.org/10.1371/journal.pone.0161879
+  probability_model: https://arxiv.org/abs/1511.00213

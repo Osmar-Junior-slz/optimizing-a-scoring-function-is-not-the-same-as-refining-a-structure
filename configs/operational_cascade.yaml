@@ -1,0 +1,12 @@
+# Configuração operacional independente dos protocolos científicos históricos.
+schema_version: operational_cascade_v1
+population: 100
+generations: 100  # Referência de operadores; a parada é por avaliações efetivas.
+full_evaluation_budget: 7600
+reduced_evaluation_fraction: 0.75
+reduced_search_scale: 0.5
+max_translation: 5.0
+max_rotation_degrees: 25.0
+initialization: uniform
+pose_source: "Supplied partner models; origin relative to reference must be reported separately."
+early_stopping: disabled_pending_independent_validation

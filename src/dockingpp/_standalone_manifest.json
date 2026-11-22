@@ -1,0 +1,609 @@
+{
+  "schema_version": "bundled_dockingpp_v1",
+  "upstream_archive_sha256": "55cda28c370294b4019f74167f434f543273db0ba5a7961f24c54f9e57cfc576",
+  "correction": {
+    "version": "factorial_seed_lineage_v6",
+    "sha256": "c72be3730bedef6f25883a62c07627c28204821a1cb871803b1045616caa0948",
+    "sources": {
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/executor_busca.py": "b893a205e0ce145c9acce12b924293e5e81ac747e2c2cf393c678d07f69f681c",
+      "dockingpp/dockingpp/application/config.py": "048b1dd07aac40749dc514df8ffa26c1ab8e2b443df1afbed9ebb1b10e6ff83f",
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/_execucao_unica_coordenador.py": "d443b94f1a581815ca02fdd41c88319415c22a923861ada23031adf4926f54e4",
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/_rescoring_final.py": "2f19263c56fa9d5be9d79df28ccb039bffc5d92665fa10aefe6e923bfe985a05",
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/rescoring_artefatos.py": "fa23226d2fb0e121075c9a7f998ab70badccd663c7e9310acd01b18dadc10ae3",
+      "dockingpp/dockingpp/pipeline/execucao/selecao_bolsoes.py": "7ed721ec85a642a51e77637e875517938716fa0bc8422dd4f87d0a1f39fd1db4",
+      "dockingpp/dockingpp/pipeline/logging.py": "ff682465dfb3d410014ab3319763957ac789441d30268fb4032e97d9b82e4e2d",
+      "dockingpp/dockingpp/pipeline/scan.py": "04166d625c5f721fcf2e07beb4146a7e13b485d2fe15767b2afd431df641ef68",
+      "dockingpp/dockingpp/scoring/expensive.py": "add10f2c07a6f83c228c47b5f35bcd4b910ba4c23d07a8af7ead9f5e8296b4d1",
+      "dockingpp/dockingpp/search/algoritmos/_ciclo_populacional.py": "f6f12e81f3524755886317861ffe7ae489dff3a44c7c61e77eb6ff188faa2f1e",
+      "dockingpp/dockingpp/search/algoritmos/_configuracao_populacional.py": "5fc78fe519ddb6600973a04f9df695af11db60a02e4b927dc102350c92758207",
+      "dockingpp/dockingpp/search/algoritmos/_estado_populacional.py": "823a1f473f192b6474a91581da51fb69b87b4f3c264c70ede41c68496c974083",
+      "dockingpp/dockingpp/search/algoritmos/_resumo_populacional.py": "e35cf17743bf57e9d7b959c105d0eee23e935ac4f30629b4acef813360069fa0",
+      "dockingpp/dockingpp/search/algoritmos/ag.py": "8d8a2eff24a00c0039b7a8a236a9be8ea6712a47bc682b5e293c920a0ece8719",
+      "dockingpp/dockingpp/search/algoritmos/base.py": "35b90d5fe9aadabac34a2d26d889a4096bf7fcc06954db0acebedb86414f093c",
+      "dockingpp/dockingpp/search/algoritmos/contexto.py": "fe247f3c9944d608808d291318d1235e8d061b8be54880a171c5c78583705a01",
+      "dockingpp/dockingpp/search/algoritmos/espaco_rigido.py": "d3911935b91d30e84c84dc1cdb0764b8625e6a262175bf3a728ebd802a9f0e9b",
+      "dockingpp/dockingpp/search/algoritmos/hibrido.py": "e344a34773d6934ae7890e327f77f2f3740f19f86d875172b13d9e6fecdf1e6f",
+      "dockingpp/dockingpp/search/algoritmos/pso.py": "b1aaf3b3eddb684f7d784934788dfedf84ee7de09cc63ca8985d54610654b3be",
+      "dockingpp/dockingpp/utils/geometry.py": "b2efd32095abed30e8d7eb0ebdcc3d4a6b6d3f86f7ba588ee4dac20767fe5934"
+    },
+    "outputs": {
+      "dockingpp/dockingpp/application/config.py": "1b0c503b83cab23cecfb0fcbae3b6fafd75230534923a38b9dc6c8cb5478f722",
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/_execucao_unica_coordenador.py": "e2ff4c4d064b32e882c665824a72100c99e3d6e95c278c57f0bd3b1ce8fbd30c",
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/_rescoring_final.py": "0e527f382dff28f35d2cd5bd5ae38e550c2889f9239259d61bb0de5358b6dc2b",
+      "dockingpp/dockingpp/pipeline/execucao/busca_execucao/rescoring_artefatos.py": "a42b0e51346dff1ffba3b1b15cab0c92b70819e5f503d307e4d45195b0031035",
+      "dockingpp/dockingpp/pipeline/execucao/selecao_bolsoes.py": "3a47e143d26c8f8326c287ecfe52d8e0e9b828e52d2f1b8bf60f63d8c2996ed0",
+      "dockingpp/dockingpp/pipeline/logging.py": "309da535f7e9c438dfb583c49e2c0848327ceaebf89db78f0cf34d9c2669d8bb",
+      "dockingpp/dockingpp/pipeline/scan.py": "63ec761a86b2ee640f06434822716b81680862927b2aa77d8bd1d67c420f2b6f",
+      "dockingpp/dockingpp/scoring/expensive.py": "a16fbc2591493a12be6555671df0828ea64529cb10c6e24f3d96c7ac5eaf9a5e",
+      "dockingpp/dockingpp/search/algoritmos/_ciclo_populacional.py": "25cd88eb993b7d663d73c3a6fc32f9cb2dd1ad66c5a9ce7a43b90485357ed682",
+      "dockingpp/dockingpp/search/algoritmos/_configuracao_populacional.py": "c0c62c065868433aff1110923331413d2601aeccfe9f8436c7adea1c9043ae2a",
+      "dockingpp/dockingpp/search/algoritmos/_estado_populacional.py": "fba0770deff59a7455a650dde1e962253001f263ef68587acc2710ea7c878727",
+      "dockingpp/dockingpp/search/algoritmos/_resumo_populacional.py": "2e83313c7d907a2eb092a8a93507b97d1d872377fd5191659344a0764c45d627",
+      "dockingpp/dockingpp/search/algoritmos/ag.py": "eaf0ba6b22da1e93992f9cf110c8aced7f6dc8d1a976d001656cde1740489dea",
+      "dockingpp/dockingpp/search/algoritmos/base.py": "7e469063290520763b0eeb393be1b6c222048dafcadcb79dfa06119c5229ea77",
+      "dockingpp/dockingpp/search/algoritmos/contexto.py": "ceba273f9d1c478956512f71b7a7a892bc44e17a9d3a66a5871813b059dc81c4",
+      "dockingpp/dockingpp/search/algoritmos/espaco_rigido.py": "a46a485b7d99f1f5dbe3c4457d4f1195f412718f8e10f4babdcecab8c75c8ba6",
+      "dockingpp/dockingpp/search/algoritmos/hibrido.py": "c53fa1f0f4e938be80adb7c88281b279702664130d3048b8a32f6db845281368",
+      "dockingpp/dockingpp/search/algoritmos/pso.py": "6189be170ebbd4c6ee531ac4ebbcfd500a47fbb22943ec868c5fb2d84277800c",
+      "dockingpp/dockingpp/utils/geometry.py": "3ed0169ea5389efb71e054baff38189a678ccda376d62e9b5dd36d8b09453ace"
+    }
+  },
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "5a5c159bde5022c747aab6519f9fbc88a0ac0a33bb98edb1f70c51cb172ae6e1"
+    },
+    {
+      "path": "adapters/__init__.py",
+      "sha256": "cd23a7830e1e183b9388d6e93b8610bdcb4e0f7122ee9a3afd77d67de11684db"
+    },
+    {
+      "path": "adapters/inbound/__init__.py",
+      "sha256": "7103d59426b773f47c7d1c6d82a212a1d9ed025764c9a4a8a48ccecd63e8be75"
+    },
+    {
+      "path": "adapters/inbound/cli.py",
+      "sha256": "c1d28ad1aca51d4fed80c0a47a242de9553aabda640e24005f4e75114941a4f2"
+    },
+    {
+      "path": "adapters/inbound/streamlit_app.py",
+      "sha256": "1a1d64d5d4004e5f66869b5394b75283fadd0472a5af558052fe586e3961c267"
+    },
+    {
+      "path": "adapters/outbound/__init__.py",
+      "sha256": "5a9e31d4c0abc19ba60bff07ef688cfd0e369b6783754410569b5241af92055f"
+    },
+    {
+      "path": "adapters/outbound/search_engine_factory.py",
+      "sha256": "014df3f7f5b1037b57edf733d11efd809577f898bc9846fa6cdb572bc3de3e00"
+    },
+    {
+      "path": "adapters/outbound/structure_loader.py",
+      "sha256": "4da57940959514329cc4ff44c56428ef49bed50082f40e7bd338ea1f2404a903"
+    },
+    {
+      "path": "api.py",
+      "sha256": "a493670741825dfaeb956b5bf5d1e6bbddbc1a9566eaad72bc0efe1f75db3e4b"
+    },
+    {
+      "path": "application/__init__.py",
+      "sha256": "ff2423831b7e7af2f62686993cbe839215793870c94900fa6b8738642aa0166b"
+    },
+    {
+      "path": "application/config.py",
+      "sha256": "1b0c503b83cab23cecfb0fcbae3b6fafd75230534923a38b9dc6c8cb5478f722"
+    },
+    {
+      "path": "application/ports/__init__.py",
+      "sha256": "73e0832dbd2568ccf3a25cf45a5c69714888d1ad8804a973f65bfbea4fcfa7dd"
+    },
+    {
+      "path": "application/ports/scoring.py",
+      "sha256": "73d51eebe86bbe0a5103234b98259ac84bbf3189d697c845e3624be303fa52e6"
+    },
+    {
+      "path": "application/ports/search_engine.py",
+      "sha256": "6f8fd6a6ed1ae791c15b46cc00965a40b2b9c6c38e7dc599d538390661351888"
+    },
+    {
+      "path": "application/ports/structures.py",
+      "sha256": "8077c042571fc2217acea930e4d8008e89c1bd0585cf95124f3a8d689d3251d8"
+    },
+    {
+      "path": "application/use_cases/__init__.py",
+      "sha256": "0f374410302ce2114c854e7a287746a9d8814b5c7bc7295229449fc444923287"
+    },
+    {
+      "path": "application/use_cases/run_docking.py",
+      "sha256": "e494068428a0f6549ea56db2fcfe07f56f803b41ef1c2f3b9efd5e0440a9cf13"
+    },
+    {
+      "path": "cli.py",
+      "sha256": "897db2cc6aff2ae0b4f4e000dec3494a8a3e043f72cef08db9f31b145d640734"
+    },
+    {
+      "path": "composition.py",
+      "sha256": "f90801af47a7d60ff7d56dc8e08fa3af5d11e298cfaefb35515868301e320d24"
+    },
+    {
+      "path": "configs/default.yaml",
+      "sha256": "851cc2a9532dfa8ed581ca27c249f8bd081a1efd90171d1d5ff6b80937b2fc53"
+    },
+    {
+      "path": "data/__init__.py",
+      "sha256": "92e926486fbedd9f749e616b7939b88a1659d7beddbf7af0dc8c15a6c07d1e6e"
+    },
+    {
+      "path": "data/io.py",
+      "sha256": "efdbe8da2793e41beefe237e3b7b84cb4f960150c826c77aafc6b1cefad3d54f"
+    },
+    {
+      "path": "data/pdb_clean.py",
+      "sha256": "9aad8c88fdb11dc8652685e795168b7046a7ef374a7098255d77ff559621eb66"
+    },
+    {
+      "path": "data/pdb_extract.py",
+      "sha256": "b3777a646ae1879e5cc96e10b6307fb72ddd6434f24a43d52e1e480dc754ca63"
+    },
+    {
+      "path": "data/pdb_identity.py",
+      "sha256": "dff27a8a72eb6da2271c9669c60f4ff5ff5930128c23a5af1ab573afa9729821"
+    },
+    {
+      "path": "data/pdb_pair_validation.py",
+      "sha256": "f3ac0a3142bc59f0d2230af164f7990450cfd601d3bd7c1e161674b469280ca8"
+    },
+    {
+      "path": "data/pdb_validation.py",
+      "sha256": "272a879b76b56473d8d226acb96374753e8f704e24c3d81d89334ceaa4a9f3d4"
+    },
+    {
+      "path": "data/structs.py",
+      "sha256": "35abc11a5c17f4dd119b1bb1d528e306e7734b9f552eb7f20f5eaa3dfd80cf2b"
+    },
+    {
+      "path": "domain/__init__.py",
+      "sha256": "36fc57910da931fede694edcf1c9edb0af13bbc1ed332c66fcb7993f75c93c5d"
+    },
+    {
+      "path": "domain/models.py",
+      "sha256": "47c93e6528087711c310fa5d463a1a2a4757af57824c7762766c6a4d36fc7448"
+    },
+    {
+      "path": "domain/peptide_constraints.py",
+      "sha256": "3e2a24287335bde6da1e894973f37fab8feb728d7fd60efd811e6716494b3139"
+    },
+    {
+      "path": "evaluation/__init__.py",
+      "sha256": "36910d46c0ed5a4a213eaacb04d5404dfa8e379a6bb7a140b6c4dd4056a7bb63"
+    },
+    {
+      "path": "evaluation/batch_structural.py",
+      "sha256": "c0e197ec754efb0be1ce77b05b562d4b4079a3eb9f589d6ecfd8023325bcad75"
+    },
+    {
+      "path": "evaluation/pipeline_structural.py",
+      "sha256": "30d70769bdba7676ade0269a9ce5e8865ad47c6564a60ed71d459296004259cb"
+    },
+    {
+      "path": "evaluation/sample_audit.py",
+      "sha256": "b237cde81cbc159a5a8e8de94592af2d14abe2b5759f0a44a7a0e34f36e63ba9"
+    },
+    {
+      "path": "evaluation/structural_metrics.py",
+      "sha256": "b75410380d84c284ca8e1ee16991ab8c9b974d7ea89fec576c9244a171eee1a7"
+    },
+    {
+      "path": "gui/app.py",
+      "sha256": "bf42f85db1e5006f369c6d48d71dc1ad5599caa48870b697b38b767ccad72535"
+    },
+    {
+      "path": "gui/pages/__init__.py",
+      "sha256": "0f71c8eebba7238aac982e99b8945cc9c0e4be8a8fa82ea93a1bd1270424c1b0"
+    },
+    {
+      "path": "gui/pages/base.py",
+      "sha256": "b3c97f93c4ce300890a859f943403d8a0d2988dca734ca8b46a1034338b893ed"
+    },
+    {
+      "path": "gui/pages/calibration.py",
+      "sha256": "e18916b95f89b1363d8103107a97fc35756b52f0e27c8bf2579f8d49947ac82e"
+    },
+    {
+      "path": "gui/pages/config.py",
+      "sha256": "78bb0b92d478fdff86266ac885f3d9cedce3b1bf854e376910b555af97688b64"
+    },
+    {
+      "path": "gui/pages/dashboard.py",
+      "sha256": "03241de0359ba406e8db21d8ae5a1234f27d3e13c63727ddd41f5e62f079ea37"
+    },
+    {
+      "path": "gui/pages/docking.py",
+      "sha256": "f586617f86cf7b49e9bec2e10f63a8b2b1c812d92713ea98237105ef42885db8"
+    },
+    {
+      "path": "gui/pages/home.py",
+      "sha256": "af76e82996464a933cce17b936ecb751702d30d6566a4ea8b5ed63c816cb1983"
+    },
+    {
+      "path": "gui/pages/pdb_prep.py",
+      "sha256": "489cda8d8d68138073e77ccba31b97b9d09b26290c4143a806bea5bae4205ea1"
+    },
+    {
+      "path": "gui/pages/reports.py",
+      "sha256": "e3f60f68c7dcab642410959d566ec466084b4f5cda4f61017090e4c3a8f8d7fd"
+    },
+    {
+      "path": "gui/pages/reports_components/__init__.py",
+      "sha256": "d7282917aa7a39a39a47debcb8f14255acdea94cbfb321871d3b656896094df3"
+    },
+    {
+      "path": "gui/pages/reports_components/audit.py",
+      "sha256": "77815c33b27159ef54f7fe8391f1c7eaf161aa9c2bfaf9f199e3cd891cc3fd82"
+    },
+    {
+      "path": "gui/pages/reports_components/data.py",
+      "sha256": "213672bd91d824052409807d544c94e405582a306042cac408ebcf8ff9098c94"
+    },
+    {
+      "path": "gui/pages/reports_components/dependencies.py",
+      "sha256": "d02de0976d2a2940443a625a1b8126863de05d9b1374e225b75f59ae98a8c9f1"
+    },
+    {
+      "path": "gui/pages/reports_components/protocol.py",
+      "sha256": "22b09fc1a44aa13b79f454b4c0cc403b474f17ee41d37acdc4c2244be5572724"
+    },
+    {
+      "path": "gui/pages/reports_components/reduced_compare.py",
+      "sha256": "37806f0094c2bdda51e88d9204815e2947f04c108c9446684e80187ebae88414"
+    },
+    {
+      "path": "gui/services/__init__.py",
+      "sha256": "a4ef63e5b066548899ee05ce12e2c239988eca7f6065672749d2466cf26770b7"
+    },
+    {
+      "path": "gui/services/dialog_service.py",
+      "sha256": "e33bd06f2acc41e434cf05c4d2f25e7bfd94a9e0fc9bd331a2f5eff15a78d79c"
+    },
+    {
+      "path": "gui/services/experiment_service.py",
+      "sha256": "f08232c1f9aca9d9e82871a04b42770a10cfe16f5ae8e8be8df6617b8284692d"
+    },
+    {
+      "path": "gui/services/io_service.py",
+      "sha256": "fea9646df935ac0a97ddf72f0ac8ffb012a921b673575ee1e1e06d9385d28233"
+    },
+    {
+      "path": "gui/services/progress_service.py",
+      "sha256": "668a5d59ab72deb38b0c6503cd24626da715ba6cd800a9207f2da10df2858781"
+    },
+    {
+      "path": "gui/services/report_service.py",
+      "sha256": "be34c830328cbe34597f8cd6036e3f4644eed94e7e01651c7edd5744e007e519"
+    },
+    {
+      "path": "gui/state.py",
+      "sha256": "3eba3757c52cf8d1a9e3c205e2f31df448c429f6d9274668b8fb2f812b81c77e"
+    },
+    {
+      "path": "gui/ui/__init__.py",
+      "sha256": "c050c45acb9d3054590f43a9dd72da9e02cb12c589e14fa8ca39b7cc5fa7eb71"
+    },
+    {
+      "path": "gui/ui/components.py",
+      "sha256": "e39cb5de0238c475dceed838e6640f10ee0eca0a2370271297069bb5d22f808f"
+    },
+    {
+      "path": "gui/utils/__init__.py",
+      "sha256": "c8fe009d32a2d3fc7b83fdb97845a98a1b7d63f7dda370fff2afd6b48b854604"
+    },
+    {
+      "path": "gui/utils/confidence_policy_labels.py",
+      "sha256": "0b99c362b88cb5eecd761e468f0393ae45ee2a098ff08b22684b22af71821635"
+    },
+    {
+      "path": "pipeline/__init__.py",
+      "sha256": "92e926486fbedd9f749e616b7939b88a1659d7beddbf7af0dc8c15a6c07d1e6e"
+    },
+    {
+      "path": "pipeline/confianca/__init__.py",
+      "sha256": "01143fd1c3539287d2670126d75833593064446047acb69fc30523aa98386822"
+    },
+    {
+      "path": "pipeline/confianca/artifact_calibrator.py",
+      "sha256": "f322502b8fb318943a164409dc5a4e98b58c1a4173b2ed3419a9dd3a7b7159b3"
+    },
+    {
+      "path": "pipeline/confianca/calibration.py",
+      "sha256": "1b9ec1a39fe9288356b6ca13935c692a77eca09c65b0fdbecaf50f7b927566d5"
+    },
+    {
+      "path": "pipeline/confianca/evidence_graph.py",
+      "sha256": "73f94d07981441bfacf76e128bef3fb504f18e610aa2a052ed4a94bce3741b30"
+    },
+    {
+      "path": "pipeline/confianca/features.py",
+      "sha256": "8e77eb956fd55b039786d17255db024a260caec82eea49d7d65b18834d9a049d"
+    },
+    {
+      "path": "pipeline/confianca/policy.py",
+      "sha256": "41845b6415ff5a3afd367dd9d1064e35e18eba7f598f572d4740c503306a55ee"
+    },
+    {
+      "path": "pipeline/confianca/selection_priority.py",
+      "sha256": "04643e2e1b6f72d321e604874880345ac736d5dec271f7b459d3c4b2afc37403"
+    },
+    {
+      "path": "pipeline/confianca/v5_training.py",
+      "sha256": "7a1f5f7bdddc110835b1d967d74745374f237eda7d6a3c7fa07485939963545b"
+    },
+    {
+      "path": "pipeline/execucao/__init__.py",
+      "sha256": "f4aa09f422613ad389882a80f9704b8cc9094d20593877141308c78e344c3ebd"
+    },
+    {
+      "path": "pipeline/execucao/_agregacao_builders.py",
+      "sha256": "1ad12a1e0b8ba04adc2937af1f24ed3e803a1fb647272b2c88d82e7729d3c218"
+    },
+    {
+      "path": "pipeline/execucao/agregacao_resultados.py",
+      "sha256": "546e912b3475eaf7a9624ff0170f40e75249f5980d6c3d0d30aaabcb0f7ab46d"
+    },
+    {
+      "path": "pipeline/execucao/auditoria_execucao.py",
+      "sha256": "3170f4fb53a5785ddcddcd672c6021f56890520a23094abaf4620be387fabbce"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/__init__.py",
+      "sha256": "e3fc6195295c402b18ca5e076c2fc8e2dd8f31b2b253b6358638998e63ece337"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/_execucao_unica_coordenador.py",
+      "sha256": "e2ff4c4d064b32e882c665824a72100c99e3d6e95c278c57f0bd3b1ce8fbd30c"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/_executor_busca_contexto.py",
+      "sha256": "2bd84e9699f2c305f04ebe006561792ed4de7bcd0d898361c64187b29f5207d1"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/_fluxo_busca_direta.py",
+      "sha256": "3c84cdd4d6e96714d297d11812cd18400979a26a7512162c5ac232026102df93"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/_rescoring_final.py",
+      "sha256": "0e527f382dff28f35d2cd5bd5ae38e550c2889f9239259d61bb0de5358b6dc2b"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/artifact_io.py",
+      "sha256": "584f9b3553d75c5744bd6b4d74fdca8798dcb3103c43d3ecaf918eb2d64fa9c1"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/contextos.py",
+      "sha256": "68eb09e0d1a75782b1b551a83ab6a9f0e5cc1a7d45dcff8e04383d3f3ee997f3"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/execucao_unica.py",
+      "sha256": "ab79f49f65a24b26b9cdcd350c773f75c7b04689dcb13a22b741feea7b69422d"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/executor_busca.py",
+      "sha256": "bb8cf02b25d9a8b84c2bbd6c983080045828b37df196bf0d7dc59a16416de7d6"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/rescoring_artefatos.py",
+      "sha256": "a42b0e51346dff1ffba3b1b15cab0c92b70819e5f503d307e4d45195b0031035"
+    },
+    {
+      "path": "pipeline/execucao/busca_execucao/serializacao_confianca.py",
+      "sha256": "c081945b0f8d36aee8afaefb758b2496fd07494ede58aa6da59f4c5dcde83fa4"
+    },
+    {
+      "path": "pipeline/execucao/execucao_busca.py",
+      "sha256": "d7a15ca557a1ea9929fe3d6aa4928067420f2f69bd77fbf4659bb542bcc432b8"
+    },
+    {
+      "path": "pipeline/execucao/orquestrador.py",
+      "sha256": "79df9ba31ec897ae5b9dcf5584a61d1cb8b2d5b712d4cf988c638ef6a58707b0"
+    },
+    {
+      "path": "pipeline/execucao/selecao_bolsoes.py",
+      "sha256": "3a47e143d26c8f8326c287ecfe52d8e0e9b828e52d2f1b8bf60f63d8c2996ed0"
+    },
+    {
+      "path": "pipeline/execucao/selecao_componentes/__init__.py",
+      "sha256": "1dddb59f929c402e4e9881fc7fe2fc83753a001b2033fb6946e896496b49e482"
+    },
+    {
+      "path": "pipeline/execucao/selecao_componentes/preparacao.py",
+      "sha256": "1528a4f79f42223cb0cefbc6c93479b032b8650ad081f753a53a9b7600ee16a3"
+    },
+    {
+      "path": "pipeline/execucao/selecao_componentes/reducao.py",
+      "sha256": "bbb30d9d48ae2ef806a7bbad91e165db37d36cdfbb739d83d4f7a31674201e30"
+    },
+    {
+      "path": "pipeline/execucao/selecao_componentes/scan.py",
+      "sha256": "e94f9c9d11dd4f5fc0f91d91a3475345f226561a05df7dd221c3f3dd5ae14b96"
+    },
+    {
+      "path": "pipeline/logging.py",
+      "sha256": "309da535f7e9c438dfb583c49e2c0848327ceaebf89db78f0cf34d9c2669d8bb"
+    },
+    {
+      "path": "pipeline/run.py",
+      "sha256": "866ab45453f1eee2d9b31de52812df49d88501465905dddd111f31bebac548d6"
+    },
+    {
+      "path": "pipeline/scan.py",
+      "sha256": "63ec761a86b2ee640f06434822716b81680862927b2aa77d8bd1d67c420f2b6f"
+    },
+    {
+      "path": "priors/__init__.py",
+      "sha256": "92e926486fbedd9f749e616b7939b88a1659d7beddbf7af0dc8c15a6c07d1e6e"
+    },
+    {
+      "path": "priors/pocket.py",
+      "sha256": "dc84d953d791df1712299cc5a5bbf98801d5adcdec847d5c71e2009d2c221434"
+    },
+    {
+      "path": "priors/pose.py",
+      "sha256": "d19303542db8ac1c8257adc91b2d8a2aea77098603d349caac81baa59a732344"
+    },
+    {
+      "path": "reducao/__init__.py",
+      "sha256": "d0837166bf359aad180a6c04c7876eef77dba809a55fd98fded81dfa174740ee"
+    },
+    {
+      "path": "reducao/admissibilidade.py",
+      "sha256": "f101975385a1816fe707613abc6c84d432f1cba107d8754853bc725147b77bfd"
+    },
+    {
+      "path": "reducao/geometria_bolsao.py",
+      "sha256": "ecb362dd8be06d302f3ec704cb87356e9ca8fedafcaa09f2679d9274e3a59165"
+    },
+    {
+      "path": "reducao/modelos.py",
+      "sha256": "94c078d94cbbdc9d5026694e58586fc557216b3c496d5b2efa0d8f9c8d56ad42"
+    },
+    {
+      "path": "reducao/perfil_peptideo.py",
+      "sha256": "fe15be9fea7723aaabaa7a117d562e138a81e95a9e98c359afb43c8c9d483ddb"
+    },
+    {
+      "path": "reducao/pre_afinidade.py",
+      "sha256": "4cc8e99510ea3ed90950c7bf915ade7dd1b88cf4976e0a1a2081a134cf101656"
+    },
+    {
+      "path": "reducao/ranking_bolsoes.py",
+      "sha256": "2b407096d7da2564afbcfc6c6f44883151c89011da2e70f7d653320b2b6136ba"
+    },
+    {
+      "path": "reducao/seletor_bolsoes.py",
+      "sha256": "7e5667915939992b5a5f9c52a7365acd134ec56215208f00bdf5e2a72da5405b"
+    },
+    {
+      "path": "reporting/__init__.py",
+      "sha256": "cbf1bb330b50287d3520159f580ab0f4f5234be59f591b239a4a04cd720219b2"
+    },
+    {
+      "path": "reporting/aggregate_runs.py",
+      "sha256": "8bf717879cbc0dab36b4bc70aee595459e9b954ae5ed559c5ad7d40f42654b26"
+    },
+    {
+      "path": "reporting/algorithm_protocol.py",
+      "sha256": "187b127b9ff6f6e8c949d3e3c5a998c9dfca044698e07ef586ad2676d7d4398d"
+    },
+    {
+      "path": "reporting/loaders.py",
+      "sha256": "c4e244f1f9d85aee25a9518711e176f8b3df4f862eb46d553fd9f00677b5d00a"
+    },
+    {
+      "path": "reporting/plots.py",
+      "sha256": "f441a60aad717c7d6a0f89a388f071ee12244217691164c15ebc425eb534e14f"
+    },
+    {
+      "path": "scoring/__init__.py",
+      "sha256": "92e926486fbedd9f749e616b7939b88a1659d7beddbf7af0dc8c15a6c07d1e6e"
+    },
+    {
+      "path": "scoring/cheap.py",
+      "sha256": "7fd410baf223f7e591880f36905f83c768e85ba1050be71079c330f8bce1ecad"
+    },
+    {
+      "path": "scoring/expensive.py",
+      "sha256": "a16fbc2591493a12be6555671df0828ea64529cb10c6e24f3d96c7ac5eaf9a5e"
+    },
+    {
+      "path": "scoring/weights.py",
+      "sha256": "515b79dfd1189895f954ecf1646be21c0e96f3bc37d25326d196a4f3148fac5b"
+    },
+    {
+      "path": "search/__init__.py",
+      "sha256": "92e926486fbedd9f749e616b7939b88a1659d7beddbf7af0dc8c15a6c07d1e6e"
+    },
+    {
+      "path": "search/algoritmos/__init__.py",
+      "sha256": "0886a5d877342a83217bc2015978c4376cba44e7e2a333f95be371fa1e8e5aa4"
+    },
+    {
+      "path": "search/algoritmos/_ciclo_populacional.py",
+      "sha256": "25cd88eb993b7d663d73c3a6fc32f9cb2dd1ad66c5a9ce7a43b90485357ed682"
+    },
+    {
+      "path": "search/algoritmos/_configuracao_populacional.py",
+      "sha256": "c0c62c065868433aff1110923331413d2601aeccfe9f8436c7adea1c9043ae2a"
+    },
+    {
+      "path": "search/algoritmos/_estado_populacional.py",
+      "sha256": "fba0770deff59a7455a650dde1e962253001f263ef68587acc2710ea7c878727"
+    },
+    {
+      "path": "search/algoritmos/_resumo_populacional.py",
+      "sha256": "2e83313c7d907a2eb092a8a93507b97d1d872377fd5191659344a0764c45d627"
+    },
+    {
+      "path": "search/algoritmos/_telemetria_populacional.py",
+      "sha256": "0667fcc12135b99638dc55661912222189c7e1cfc2c48a693068a534b439273e"
+    },
+    {
+      "path": "search/algoritmos/ag.py",
+      "sha256": "eaf0ba6b22da1e93992f9cf110c8aced7f6dc8d1a976d001656cde1740489dea"
+    },
+    {
+      "path": "search/algoritmos/base.py",
+      "sha256": "7e469063290520763b0eeb393be1b6c222048dafcadcb79dfa06119c5229ea77"
+    },
+    {
+      "path": "search/algoritmos/comum.py",
+      "sha256": "d37765a2cf9a4119a807562ddd940732d03543f7efd5e47c2211ea6b1b6b1c3d"
+    },
+    {
+      "path": "search/algoritmos/contexto.py",
+      "sha256": "ceba273f9d1c478956512f71b7a7a892bc44e17a9d3a66a5871813b059dc81c4"
+    },
+    {
+      "path": "search/algoritmos/espaco_rigido.py",
+      "sha256": "a46a485b7d99f1f5dbe3c4457d4f1195f412718f8e10f4babdcecab8c75c8ba6"
+    },
+    {
+      "path": "search/algoritmos/hibrido.py",
+      "sha256": "c53fa1f0f4e938be80adb7c88281b279702664130d3048b8a32f6db845281368"
+    },
+    {
+      "path": "search/algoritmos/hibrido_memoria.py",
+      "sha256": "217e74249e32472260efa5287e4e5530abd47ef150dfbd97a0af351414237b6e"
+    },
+    {
+      "path": "search/algoritmos/pso.py",
+      "sha256": "6189be170ebbd4c6ee531ac4ebbcfd500a47fbb22943ec868c5fb2d84277800c"
+    },
+    {
+      "path": "search/controlador_populacional.py",
+      "sha256": "c0c1158ad2afae674a3003c31baf1616a1661fd123b6f48ca1a500265bae6131"
+    },
+    {
+      "path": "search/engine.py",
+      "sha256": "d0b8332eeea87e43e0ab4540e4ec2de94da20c6d4a1b436ec40b12cad6f13855"
+    },
+    {
+      "path": "utils/__init__.py",
+      "sha256": "92e926486fbedd9f749e616b7939b88a1659d7beddbf7af0dc8c15a6c07d1e6e"
+    },
+    {
+      "path": "utils/debug_logger.py",
+      "sha256": "fcf38258ff6dfff386bfbe24b8c73b0e872a4f7c095d9dd6400d42797319456f"
+    },
+    {
+      "path": "utils/geometry.py",
+      "sha256": "3ed0169ea5389efb71e054baff38189a678ccda376d62e9b5dd36d8b09453ace"
+    },
+    {
+      "path": "utils/kdtree.py",
+      "sha256": "4d1a1e959c623e8666c36714b44e0e5a6784a1b7767af4fdb56430def64d7269"
+    },
+    {
+      "path": "utils/topk.py",
+      "sha256": "a80a300542fdd7e64f53c7a2e7f2bd2d1634887fc5e8df772be5234627fd0668"
+    }
+  ]
+}

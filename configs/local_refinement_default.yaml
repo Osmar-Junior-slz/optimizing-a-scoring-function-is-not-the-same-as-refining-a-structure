@@ -1,0 +1,89 @@
+# Configuração herdada para desenvolvimento local.
+# Não representa compromisso prospectivo nem autorização de um novo calibrador.
+schema_version: "2.0"
+docking_task: local_refinement
+
+features:
+  schema_version: local_refinement_decision_features_v1
+  provenance: reduced_only
+  columns:
+    - viable_fraction_mean
+    - elite_dispersion
+    - uncertainty_count
+    - graph_has_interface_contact
+    - graph_min_cross_distance_angstrom
+    - graph_interface_edge_count
+    - graph_interface_density
+    - graph_receptor_contact_fraction
+    - graph_ligand_contact_fraction
+    - graph_largest_component_fraction
+    - graph_clash_atom_pair_count
+
+contact_graph:
+  enabled: true
+  schema_version: residue_interface_contact_graph_v2
+  parser_schema_version: pdb_fixed_columns_v2
+  altloc_policy: residue_highest_total_occupancy_v1
+  node_universe: all_selected_residues
+  model_id: 1
+  cutoff_angstrom: 4.5
+  clash_cutoff_angstrom: 2.0
+  include_hetero: false
+  heavy_atoms_only: true
+  exclude_waters: true
+  require_pose_provenance: true
+
+preservation:
+  minimum_reduced_dockq: 0.23
+  maximum_dockq_loss: 0.05
+
+validation:
+  split_folds: 5
+  random_seed: 20260831
+  assignment_commitment: predeclared_before_labels
+
+model:
+  C: 1.0
+  class_weight: balanced
+  max_iter: 5000
+
+calibration:
+  method: inductive_venn_abers
+  minimum_independent_complexes: 20
+  minimum_positive_class_complexes: 5
+  minimum_negative_class_complexes: 4
+
+applicability_domain:
+  lower_quantile: 0.01
+  upper_quantile: 0.99
+  block_feature_extrapolation: true
+
+policy:
+  method: cluster_bootstrap_run_risk
+  bootstrap_repetitions: 10000
+  bootstrap_seed: 20260909
+  risk_target: 0.20
+  familywise_confidence_level: 0.95
+  risk_error_budget_fraction: 0.80
+  # Equal bounds evaluate a fixed acceptance threshold.
+  threshold_min: 0.90
+  threshold_max: 0.90
+  threshold_step: 0.05
+  minimum_complex_coverage: 0.10
+  minimum_evaluated_complexes: 30
+  minimum_authorized_complexes: 30
+
+runtime_gate:
+  assessment_scope: total_paired_cascade
+  require_measured_overhead: true
+  overhead_column: confidence_overhead_sec
+  enabled: true
+  require_reduced_faster_than_full: true
+  minimum_speedup: 1.0
+
+authorization:
+  profile: production_graph_v2
+  allow_automatic_decision: false
+  require_scientific_provenance: true
+  trusted_engine_allowlist: [dockingpp_local]
+  protocol_commitment_sha256: null

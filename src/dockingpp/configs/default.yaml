@@ -1,0 +1,394 @@
+# Core runtime/search controls (active)
+seed: 7
+device: cpu
+search_engine: hybrid
+
+# Bateria final da dissertacao: cinco repeticoes, com 100 geracoes e
+# populacao 100. A tela de Docking herda estes valores automaticamente.
+generations: 100
+pop_size: 100
+n_rounds: 5
+
+topk: 5
+num_atoms: 10
+max_trans: 5.0
+max_rot_deg: 25.0
+
+# In reduced mode, center the peptide search on each selected pocket. In full
+# mode, preserve the input peptide centroid. Explicit alternatives are
+# pocket_center and input_centroid.
+search_anchor_mode: auto
+
+# Implementação fiel ao híbrido original anexado: ABC sobre a população
+# completa, Solis-Wets sobre a elite real e GA por torneio. O valor legacy é
+# aceito somente para reproduzir execuções antigas.
+hybrid_operator_mode: canonical
+alpha: 0.8
+onlooker_frac: 0.8
+elite_size: 1
+tournament_k: 3
+limit_no_improve: 30
+ga_interval: 20
+p_crossover_ari: 0.5
+p_mutation_gauss: 0.7
+adaptive_operator_probabilities: false
+operator_adaptation_rate: 0.25
+operator_probability_min: 0.1
+operator_probability_max: 0.9
+
+# Busca local Solis-Wets consumida pelo híbrido.
+sw_interval: 3
+sw_max_iter: 50
+sw_elite_iter: 15
+sw_heavy_iter: 20
+sw_patience: 8
+sw_iter_budget: 2000
+top_frac_sw: 0.1
+
+# Baseline AG real-codificado (SBX + mutação polinomial, espaço rígido 6D).
+ag_elite_size: 1
+ag_tournament_k: 3
+ag_crossover_probability: 0.9
+ag_mutation_probability: null  # null = 1 / número de dimensões
+ag_sbx_eta: 15.0
+ag_mutation_eta: 20.0
+
+# Baseline PSO clássico (posição, velocidade, pbest e gbest em 6D).
+pso_inertia_weight: 1.0
+pso_cognitive_coefficient: 2.0
+pso_social_coefficient: 2.0
+pso_velocity_clamp_fraction: 0.2
+
+# Orçamento científico opcional. Defina o mesmo valor em AG, PSO e híbrido
+# para comparar qualidade sob igual número de chamadas da função objetivo.
+objective_evaluation_budget_per_pocket: null
+
+# Parada por platô do híbrido original (independente da política de confiança).
+hybrid_plateau_patience: 80
+hybrid_plateau_eps: 0.000001
+
+# Parametros padrao calibrados do hibrido com memoria.
+# Mantem a arquitetura ABC+AG+VGOS-M e altera apenas os controles internos
+# escolhidos apos a bateria de testes na 1A1N.
+hybrid_memory_inject_count: 2
+hybrid_memory_onlooker_frac: 0.8
+hybrid_memory_ga_interval: 20
+hybrid_memory_limit_no_improve: 30
+hybrid_memory_alpha: 0.8
+hybrid_memory_sw_elite_iter: 15
+hybrid_memory_sw_heavy_iter: 20
+hybrid_memory_p_mutation_gauss: 0.7
+hybrid_memory_size: 15
+hybrid_memory_sw_interval: 3
+hybrid_memory_p_crossover_ari: 0.5
+hybrid_memory_top_frac_sw: 0.10
+hybrid_memory_sw_patience: 8
+hybrid_memory_warmup_generations: 1
+
+# Search-space and pocket usage controls (active)
+top_pockets: 32
+full_search: true
+max_pockets_used: 8
+pockets_path: null
+search_space_mode: full
+budget_policy: split
+
+# The scan decides which pocket is preferred. Final rescoring still selects the
+# pose inside each pocket, but does not silently replace the best scanned pocket
+# with a different site. Use final_rescore only as an explicit legacy ablation.
+cross_pocket_selection_policy: scan_priority
+
+# Deterministic safety gate: if every reduced final pose fails the hard-clash
+# veto, preserve the reduced evidence and execute the full fallback.
+reduced_geometric_fallback_enabled: true
+
+# Deprecated alias/legacy mode flag; current code uses search_space_mode/full_search.
+pocket_mode: full
+
+# Global pocket construction margin (active in full mode global pocket build).
+pocket_margin: 2.0
+
+# Automatic reduced-space candidate generation. Candidates are empty anchor
+# points near the receptor surface; they are not dense receptor voxels.
+pocket_grid_size: 4.0
+pocket_grid_padding: 8.0
+pocket_contact_radius: 8.0
+pocket_anchor_min_clearance: 3.0
+pocket_anchor_max_clearance: 6.0
+pocket_anchor_target_clearance: 4.5
+pocket_anchor_clearance_weight: 2.0
+pocket_anchor_separation: 6.0
+pocket_search_radius: 5.0
+pocket_grid_chunk_size: 128
+pocket_max_grid_points: 250000
+min_pocket_contact_atoms: 8
+auto_pocket_count: 32
+
+# Native/input peptide coordinates are excluded from automatic pocket ranking.
+# Enable only in an explicitly labelled oracle/ablation protocol.
+allow_peptide_coordinate_prior: false
+
+# Debug/audit controls (active)
+debug_log_enabled: false
+debug_log_path: null
+debug_log_level: INFO
+
+# Prior/ranking weights (active in pocket ranking stage)
+pocket_rank_weights:
+  w_size: 1.0
+  w_compact: 1.0
+  w_depth: 0.5
+  w_proximity: 0.0
+
+# Cheap triage score weights (active)
+cheap_score_variant: geom_kdtree_smooth_contact
+
+cheap_weights:
+  # Legacy aliases kept for compatibility with older runs/exports.
+  w_contacts: 1.0
+  w_clashes: 1.5
+  w_geom: 0.1
+
+  # MonoObjetivoDockingKDTree-inspired cheap objective with smooth contact.
+  w_col: 10.0
+  w_exp: 1.0
+  w_bonus: 2.1
+
+  # Janela geometrica calibrada na 1A1N para reduzir contato apertado demais
+  # e melhorar alinhamento estrutural (DockQ/Fnat/iRMSD/LRMSD).
+  colisao_severa: 1.2
+  colisao_moderada: 1.6
+  contato_min: 2.0
+  contato_max: 4.5
+  contato_ideal: 3.0
+  contato_sigma: 1.0
+
+  margem_exposicao: 2.0
+  gate_min_contatos: 5
+  penalidade_colisao_severa: 1000000.0
+
+# Final score naming control.
+final_score_variant: vina_rescore
+
+# Final rescoring controls (active, selective, end-of-run only).
+rescoring_enabled: true
+rescoring_top_k: 5
+rescoring_scope: global
+rescoring_candidate_pool: 10
+
+# Avaliacao estrutural pos-hoc da melhor pose contra o peptideo de entrada.
+# Estas metricas nao participam da funcao objetivo nem da selecao.
+structural_metrics_enabled: true
+structural_contact_cutoff_angstrom: 4.0
+structural_interface_cutoff_angstrom: 8.0
+
+# Identidade e calibracao cientifica. O calibrador deve ser um artefato
+# treinado externamente; o pipeline nunca fabrica coeficientes automaticamente.
+complex_id: null
+complex_id_source: null
+complex_id_conflict: null
+input_id: null
+# V5-only: informe aqui um artefato treinado com schema_version: 5.
+# O valor permanece nulo ate o novo treinamento para impedir uso de schema antigo.
+confidence_calibrator_path: null
+# Mantem o docking executavel enquanto o artefato V5 ainda nao existe. Depois
+# de treinar e informar o caminho V5, altere para true no protocolo final.
+confidence_calibrator_required: false
+# Preflight ativo por padrao do parceiro informado como peptideo. Evita que
+# moleculas pequenas HETATM (por exemplo PGH) entrem no protocolo
+# proteina--peptideo e gerem metricas CAPRI sem significado.
+peptide_input_validation_enabled: true
+receptor_peptide_pair_validation_enabled: true
+# Faixa central da validacao do parceiro peptidico.
+# Alterar aqui afeta preflight, Docking e Preparacao PDB quando a configuracao
+# padrao estiver carregada.
+peptide_min_residues: 5
+peptide_max_residues: 30
+
+rescoring:
+  cutoff_pair: 8.0
+  w_g1: -0.035579
+  w_g2: -0.005156
+  w_rep: 0.840245
+  w_hyd: -0.035069
+  w_hb: -0.587439
+  w_elec: 0.20
+  eps0: 16.0
+  r_switch: 1.5
+  repulsion_delta_cap: 0.30
+  pair_clip_min: -20.0
+  pair_clip_max: 6.0
+  scale_a: 1.20
+  scale_b: 0.0
+  hard_clash_gate_enabled: true
+  hard_clash_min_distance: 1.2
+  hard_clash_penalty_score: -1000000.0
+
+# Optional expensive rescoring schedule (active controls)
+# Mantido desligado para nao pesar a busca.
+expensive_every: 0
+expensive_topk: null
+
+# Legacy expensive rescoring model knobs (fallback compatibility path).
+expensive:
+  contact_cutoff: 4.0
+  clash_cutoff: 2.0
+  w_att: 1.0
+  w_rep: 3.0
+
+# Scan/pocket pre-filter controls
+scan:
+  # Active: enables scan stage before reduced execution.
+  enabled: true
+
+  # Active: selector implementation route (legacy | geom_kdtree).
+  # Ajustado para alinhar scan com a nova funcao barata.
+  selector_mode: geom_kdtree
+
+  # Deprecated/legacy: not consumed by current scan executor.
+  generations: 30
+
+  # Active: 32 amostras efetivas por bolsao. Nos ensaios 2IGF/1A1N, 32 e
+  # computacionalmente viavel, mas nao deve ser interpretado como calibracao.
+  samples_per_pocket: 32
+
+  # Active: cap adaptativo para limitar custo total de scan no modo reduzido.
+  max_total_samples: 1024
+
+  # Active: piso minimo por bolsao quando cap adaptativo estiver ativo.
+  min_effective_samples_per_pocket: 32
+
+  # Active: teto duro de amostras quando ha multiplos bolsoes candidatos.
+  multi_pocket_hard_cap: 32
+
+  # Para testar melhor o scan/reducao, deixo false.
+  # Se quiser rodar mais rapido quando houver apenas um bolsao, troque para true.
+  skip_scan_when_single_pocket: false
+
+  # Active: interrompe cedo scan de bolsao claramente inviavel.
+  early_stop_enabled: true
+  early_stop_min_samples: 8
+  early_stop_severe_clash_fraction_geq: 0.98
+  early_stop_feasible_fraction_leq: 0.0
+  early_stop_contact_fraction_leq: 0.02
+
+  # Deprecated/legacy: currently not consumed by selector/executor.
+  max_pockets_scan: null
+
+  # Conservative default: evolve only the best audited scan candidate. Values
+  # above 1 are supported for sensitivity analyses and retain scan priority.
+  select_top_k: 1
+
+  # Limiares alinhados com cheap_weights.
+  clash_cutoff: 2.0
+  contact_cutoff: 5.0
+
+  # Active legacy-mode acceptance threshold.
+  max_clash_ratio: 0.02
+
+  # Fail-closed: if every candidate is infeasible, execute the full fallback.
+  allow_relaxed_acceptance_when_empty: false
+
+  # Active optional sample-count bounds.
+  min_samples_per_pocket: null
+  max_samples_per_pocket: null
+
+  # Active geom_kdtree sampling/robust-score knobs.
+  translation_sigma: 2.0
+  translation_local_sigma: 0.2
+  rotation_max_deg: 30.0
+
+  severe_clash_threshold: 1.4
+  moderate_clash_threshold: 2.0
+  contact_min: 2.4
+  contact_max: 5.0
+
+  collision_weight_severe: 12.0
+  collision_weight_moderate: 3.0
+  exposure_margin: 2.0
+
+  tau_severe_fraction: 0.05
+  tau_moderate_fraction: 0.35
+  tau_exposure_penalty: 0.5
+  tau_contact_fraction_min: 0.01
+
+  energy_lambda_exp: 1.0
+  energy_lambda_contact: 1.0
+
+  reject_if_feasible_fraction_leq: 0.0
+  reject_if_severe_clash_fraction_geq: 0.95
+
+  # Active robust-score component weights (geom_kdtree and compatibility aliases).
+  score_alpha: 1.0
+  score_beta: 1.0
+  score_gamma: 1.0
+  score_delta: 1.0
+
+  score_a1: 1.5
+  score_a2: 0.5
+  score_a3: 0.35
+
+  score_b1: 1.0
+  score_b2: 0.5
+  score_b3: 0.25
+
+  score_c1: 1.0
+  score_c2: 0.75
+  score_c3: 0.5
+
+  # Active deterministic offset for scan RNG.
+  seed_offset: 1337
+
+# Politica de confianca
+# O runtime aceita exclusivamente o calibrador de preservacao v5.
+# O primeiro artefato v5 permanece em observacao ate confirmacao externa intocada.
+confidence_policy:
+  enabled: true
+  mode: observe
+  apply_fallback: false
+  # Piso administrativo: o runtime nunca reduz o limiar selecionado pelo
+  # controle de risco OOF gravado no artefato; pode apenas torna-lo mais estrito.
+  min_calibrated_success_probability: 0.80
+  # Segurança científica: sinais heurísticos podem recomendar cautela, mas só
+  # executam fallback automático sem modelo calibrado quando esta opção é
+  # habilitada explicitamente para estudos de ablação/compatibilidade.
+  allow_uncalibrated_fallback: false
+  search_control:
+    # Perfil f01_minimo_seguro: calibração externa selecionada em 1A1N.
+    # Critério: reduzir tempo nos motores ABC+AG+VGOS, AG e PSO sem piorar
+    # o score final. A heurística guia prioridade populacional, mas não
+    # altera Evina nem o score científico final.
+    enabled: true
+    # Parada antecipada auditavel: encerra geracoes quando ha plato do melhor
+    # score global e a populacao ainda passa nos sinais de confianca.
+    early_stop_enabled: true
+    elite_fraction: 0.10
+    min_elite_fragment: 3
+    archive_inject_count: 2
+    archive_replace_only_if_better: true
+    # A heuristica atua como orientador condicional: usa sinais ja calculados
+    # pela funcao objetivo e so faz diagnostico/curadoria quando necessario.
+    orientation_min_generation: 5
+    # Checagem leve dos sinais objetivos. Fora desse intervalo, so checa antes
+    # se houver sinal grave ja produzido pela funcao objetivo.
+    signal_check_interval: 10
+    max_zero_score_fraction: 0.25
+    min_elite_gap: 0.01
+    min_generations: 50
+    plateau_window: 10
+    plateau_abs_improvement_max: 0.05
+    no_improve_patience: 10
+    elite_score_std_max: 0.25
+    elite_coords_dispersion_max: 1.0
+    min_viable_fraction: 0.05
+    max_severe_clash_fraction: 0.95
+    active_gate:
+      min_viable_fraction: 0.05
+      max_severe_clash_fraction: 0.95
+      min_score_dynamic_range: 0.000001
+    active_weights:
+      contact_bonus: 0.001
+      viability_bonus: 0.002
+      severe_clash_penalty: -0.010
+      zero_score_penalty: -0.003
+      elite_consensus_penalty: -0.0005
