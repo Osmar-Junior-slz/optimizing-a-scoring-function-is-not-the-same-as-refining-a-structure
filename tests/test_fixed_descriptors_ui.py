@@ -1,6 +1,9 @@
 """One-calibrator hybrid UI behavior without fitting models inside interface tests."""
+from io import BytesIO
 from pathlib import Path
+from zipfile import ZipFile
 
+import pytest
 from streamlit.testing.v1 import AppTest
 
 from docking_confidence.ui import calibrator_page
@@ -16,6 +19,23 @@ DESCRIPTORS = [
     "graph_ligand_residue_count", "graph_degree_std", "graph_max_degree",
     "graph_connected_component_count",
 ]
+
+
+@pytest.fixture
+def portable_download(monkeypatch):
+    """The mocked persistence service has no real model for the exporter to read."""
+    stream = BytesIO()
+    with ZipFile(stream, "w") as archive:
+        archive.writestr("artifact.json", "{}")
+    payload = stream.getvalue()
+    calls = []
+
+    def export(path):
+        calls.append(str(path))
+        return payload
+
+    monkeypatch.setattr(calibrator_page, "export_calibrator_zip", export)
+    return calls
 
 
 def _result(output, *, schema=None):
@@ -49,7 +69,7 @@ def _texts(app):
     return "\n".join(element.value for kind in (app.markdown, app.caption) for element in kind)
 
 
-def test_create_shows_fifteen_fixed_descriptors_and_reserved_calibration(tmp_path, monkeypatch):
+def test_create_shows_fifteen_fixed_descriptors_and_reserved_calibration(tmp_path, monkeypatch, portable_download):
     output = tmp_path / "new_model"
     calls = []
 
@@ -82,10 +102,11 @@ def test_create_shows_fifteen_fixed_descriptors_and_reserved_calibration(tmp_pat
     assert "Não representam porcentagem de confiança" in text
     assert not app.selectbox and not app.multiselect
     assert len(app.get("download_button")) == 1
+    assert portable_download == [str(output / "artifact.json")]
     assert all(name not in text for name in ["algorithm_ag", "algorithm_pso", "algorithm_hybrid"])
 
 
-def test_reloading_current_model_keeps_fixed_descriptors_without_refitting(tmp_path, monkeypatch):
+def test_reloading_current_model_keeps_fixed_descriptors_without_refitting(tmp_path, monkeypatch, portable_download):
     output = tmp_path / "saved_model"
     output.mkdir()
     (output / "artifact.json").write_text("{}", encoding="utf-8")
@@ -109,11 +130,12 @@ def test_reloading_current_model_keeps_fixed_descriptors_without_refitting(tmp_p
     assert "Preditor híbrido: 50% linear + 50% árvores" in _texts(app)
     assert any("carregado e verificado" in info.value for info in app.info)
     assert not app.success
+    assert portable_download == [str(output / "artifact.json")]
     app.run(timeout=30)
     assert not app.exception and len(loads) == 1
 
 
-def test_historical_model_is_identified_without_current_descriptor_claim(tmp_path, monkeypatch):
+def test_historical_model_is_identified_without_current_descriptor_claim(tmp_path, monkeypatch, portable_download):
     output = tmp_path / "historical"
     output.mkdir()
     (output / "artifact.json").write_text("{}", encoding="utf-8")
